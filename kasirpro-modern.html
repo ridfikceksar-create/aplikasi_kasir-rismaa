@@ -1,0 +1,111 @@
+<!DOCTYPE html>
+<html lang="id">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>KasirPro — Modern POS</title>
+<style>
+:root{--bg:#f5f7fb;--card:#fff;--text:#172033;--muted:#7b8497;--line:#e8ebf2;--primary:#635bff;--primary2:#4f46e5;--success:#16a34a;--danger:#ef4444;--shadow:0 10px 30px rgba(28,39,67,.08)}
+*{box-sizing:border-box}body{margin:0;background:var(--bg);color:var(--text);font-family:Inter,system-ui,-apple-system,BlinkMacSystemFont,"Segoe UI",sans-serif}
+button,input{font:inherit}.app{min-height:100vh;display:flex}.sidebar{width:240px;background:#151827;color:#fff;padding:24px 16px;position:fixed;inset:0 auto 0 0}.brand{display:flex;align-items:center;gap:10px;font-size:21px;font-weight:800;padding:5px 10px 28px}.brand-icon{width:38px;height:38px;border-radius:11px;background:#635bff;display:grid;place-items:center}.nav{display:grid;gap:8px}.nav button{border:0;background:transparent;color:#aeb4c5;text-align:left;padding:13px 14px;border-radius:10px;cursor:pointer}.nav button.active,.nav button:hover{background:#252a40;color:#fff}.side-bottom{position:absolute;bottom:22px;left:16px;right:16px;background:#20243a;padding:14px;border-radius:12px;font-size:12px;color:#aeb4c5}.main{margin-left:240px;width:calc(100% - 240px);padding:24px 28px}.top{display:flex;justify-content:space-between;align-items:center;margin-bottom:24px}.top h1{margin:0;font-size:27px}.top p{margin:5px 0 0;color:var(--muted)}.profile{display:flex;gap:10px;align-items:center}.avatar{width:40px;height:40px;border-radius:50%;background:#ddd;display:grid;place-items:center;font-weight:700}.layout{display:grid;grid-template-columns:minmax(0,1fr) 390px;gap:22px}.card{background:var(--card);border:1px solid var(--line);border-radius:18px;box-shadow:var(--shadow)}.products-card{padding:20px}.toolbar{display:flex;gap:12px;margin-bottom:18px}.search{flex:1;position:relative}.search input{width:100%;padding:13px 15px 13px 42px;border:1px solid var(--line);border-radius:11px;outline:none;background:#fafbfe}.search span{position:absolute;left:14px;top:11px}.cats{display:flex;gap:8px;overflow:auto}.cats button{border:1px solid var(--line);background:#fff;padding:10px 14px;border-radius:9px;white-space:nowrap;cursor:pointer}.cats button.active{background:#635bff;color:#fff;border-color:#635bff}.products{display:grid;grid-template-columns:repeat(3,1fr);gap:14px}.product{border:1px solid var(--line);border-radius:14px;padding:14px;cursor:pointer;transition:.2s;background:#fff}.product:hover{transform:translateY(-2px);box-shadow:0 8px 20px rgba(0,0,0,.07)}.pic{height:115px;border-radius:11px;background:linear-gradient(135deg,#f1f3f9,#e4e8f3);display:grid;place-items:center;font-size:48px;margin-bottom:12px}.product h3{font-size:15px;margin:0 0 5px}.meta{font-size:12px;color:var(--muted)}.price{font-weight:800;margin-top:9px}.stock{float:right;color:var(--success);font-size:11px;font-weight:600}.cart{padding:20px;position:sticky;top:20px}.cart-head{display:flex;justify-content:space-between;align-items:center}.cart-head h2{margin:0}.count{background:#eeedff;color:#554de7;border-radius:20px;padding:5px 9px;font-size:12px;font-weight:700}.cart-list{max-height:360px;overflow:auto;margin:14px 0}.empty{text-align:center;padding:45px 10px;color:var(--muted)}.item{display:flex;gap:10px;padding:13px 0;border-bottom:1px solid var(--line)}.mini{width:48px;height:48px;border-radius:10px;background:#f0f2f7;display:grid;place-items:center;font-size:23px}.item-main{flex:1}.item-name{font-weight:700;font-size:13px}.item-price{font-size:12px;color:var(--muted);margin-top:3px}.qty{display:flex;align-items:center;gap:6px;margin-top:7px}.qty button{width:25px;height:25px;border:1px solid var(--line);background:#fff;border-radius:6px;cursor:pointer}.qty span{font-size:12px;font-weight:700;min-width:16px;text-align:center}.remove{border:0;background:none;color:#aaa;cursor:pointer;align-self:flex-start}.summary{border-top:1px solid var(--line);padding-top:15px}.row{display:flex;justify-content:space-between;margin:9px 0;color:var(--muted);font-size:14px}.row.total{font-size:20px;color:var(--text);font-weight:800;margin-top:14px}.pay-title{font-size:12px;color:var(--muted);margin:17px 0 8px}.methods{display:grid;grid-template-columns:1fr 1fr;gap:8px}.method{border:1px solid var(--line);background:#fff;border-radius:9px;padding:11px;cursor:pointer}.method.active{border-color:#635bff;background:#f3f2ff;color:#5149df;font-weight:700}.checkout{width:100%;border:0;background:linear-gradient(135deg,var(--primary),var(--primary2));color:#fff;padding:14px;border-radius:10px;margin-top:12px;font-weight:800;cursor:pointer;box-shadow:0 8px 18px rgba(99,91,255,.25)}.checkout:disabled{opacity:.45;cursor:not-allowed}.clear{width:100%;border:0;background:#fff;color:var(--danger);padding:10px;margin-top:4px;cursor:pointer}.modal{position:fixed;inset:0;background:#0007;display:none;place-items:center;padding:20px}.modal.show{display:grid}.receipt{background:#fff;width:min(390px,100%);border-radius:18px;padding:22px}.receipt h2{text-align:center;margin:0}.receipt pre{font:12px/1.6 monospace;white-space:pre-wrap}.receipt button{width:100%;padding:11px;border:0;border-radius:9px;background:#151827;color:#fff;cursor:pointer}
+@media(max-width:1050px){.layout{grid-template-columns:1fr}.cart{position:static}.products{grid-template-columns:repeat(3,1fr)}}@media(max-width:760px){.sidebar{width:68px;padding:16px 10px}.brand span,.nav button span,.side-bottom{display:none}.brand{padding-bottom:20px}.nav button{text-align:center;font-size:18px}.main{margin-left:68px;width:calc(100% - 68px);padding:18px 14px}.products{grid-template-columns:repeat(2,1fr)}.top h1{font-size:21px}}@media(max-width:480px){.toolbar{display:block}.cats{margin-top:10px}.products{grid-template-columns:1fr 1fr}.pic{height:90px;font-size:38px}}
+</style>
+</head>
+<body>
+<div class="app">
+<aside class="sidebar">
+  <div class="brand"><div class="brand-icon">🛍️</div><span>KasirPro</span></div>
+  <nav class="nav">
+    <button class="active">🛒 <span>Kasir</span></button>
+    <button>📦 <span>Produk</span></button>
+    <button>📊 <span>Laporan</span></button>
+    <button>👥 <span>Pelanggan</span></button>
+    <button>⚙️ <span>Pengaturan</span></button>
+  </nav>
+  <div class="side-bottom">● Toko online aktif<br><b style="color:#fff">Kasir Utama</b></div>
+</aside>
+
+<main class="main">
+  <header class="top">
+    <div><h1>Kasir</h1><p id="date"></p></div>
+    <div class="profile"><div><b>Admin</b><br><small style="color:var(--muted)">Kasir Utama</small></div><div class="avatar">A</div></div>
+  </header>
+
+  <div class="layout">
+    <section class="card products-card">
+      <div class="toolbar">
+        <div class="search">🔎<input id="search" placeholder="Cari nama produk..." oninput="render()"></div>
+        <div class="cats">
+          <button class="active" onclick="setCat('Semua',this)">Semua</button><button onclick="setCat('Makanan',this)">Makanan</button><button onclick="setCat('Minuman',this)">Minuman</button><button onclick="setCat('Snack',this)">Snack</button>
+        </div>
+      </div>
+      <div id="products" class="products"></div>
+    </section>
+
+    <aside class="card cart">
+      <div class="cart-head"><h2>Pesanan</h2><span class="count" id="count">0 item</span></div>
+      <div id="cart" class="cart-list"></div>
+      <div class="summary">
+        <div class="row"><span>Subtotal</span><b id="subtotal">Rp0</b></div>
+        <div class="row"><span>Diskon</span><b id="discount">Rp0</b></div>
+        <div class="row total"><span>Total</span><span id="total">Rp0</span></div>
+        <div class="pay-title">Metode pembayaran</div>
+        <div class="methods"><button class="method active" onclick="method('Tunai',this)">💵 Tunai</button><button class="method" onclick="method('QRIS',this)">▦ QRIS</button></div>
+        <button id="checkout" class="checkout" onclick="checkout()">Bayar Sekarang</button>
+        <button class="clear" onclick="clearCart()">Kosongkan pesanan</button>
+      </div>
+    </aside>
+  </div>
+</main>
+</div>
+
+<div id="modal" class="modal"><div class="receipt"><h2>✓ Pembayaran Berhasil</h2><p style="text-align:center;color:#777" id="receiptDate"></p><pre id="receiptText"></pre><button onclick="closeModal()">Tutup</button></div></div>
+
+<script>
+const products=[
+{id:1,n:"Nasi Goreng Spesial",p:18000,c:"Makanan",e:"🍳",s:24},{id:2,n:"Ayam Geprek",p:22000,c:"Makanan",e:"🍗",s:18},{id:3,n:"Mie Goreng",p:15000,c:"Makanan",e:"🍜",s:30},
+{id:4,n:"Es Teh Manis",p:6000,c:"Minuman",e:"🧋",s:40},{id:5,n:"Kopi Susu",p:12000,c:"Minuman",e:"☕",s:22},{id:6,n:"Jus Jeruk",p:10000,c:"Minuman",e:"🍊",s:16},
+{id:7,n:"Kentang Goreng",p:12000,c:"Snack",e:"🍟",s:15},{id:8,n:"Burger Beef",p:25000,c:"Snack",e:"🍔",s:12},{id:9,n:"Pisang Cokelat",p:13000,c:"Snack",e:"🍌",s:20}
+];
+let cart=[],cat="Semua",pay="Tunai";
+const rp=n=>new Intl.NumberFormat("id-ID",{style:"currency",currency:"IDR",maximumFractionDigits:0}).format(n);
+function setCat(x,b){cat=x;document.querySelectorAll(".cats button").forEach(q=>q.classList.remove("active"));b.classList.add("active");render()}
+function render(){
+ let q=document.getElementById("search").value.toLowerCase();
+ let list=products.filter(x=>(cat==="Semua"||x.c===cat)&&x.n.toLowerCase().includes(q));
+ document.getElementById("products").innerHTML=list.map(x=>`<div class="product" onclick="add(${x.id})"><div class="pic">${x.e}</div><h3>${x.n}</h3><div class="meta">${x.c}<span class="stock">${x.s} stok</span></div><div class="price">${rp(x.p)}</div></div>`).join("");
+ renderCart();
+}
+function add(id){let p=products.find(x=>x.id===id),i=cart.find(x=>x.id===id);if(i)i.q++;else cart.push({...p,q:1});renderCart()}
+function change(id,d){let i=cart.find(x=>x.id===id);if(!i)return;i.q+=d;if(i.q<1)cart=cart.filter(x=>x.id!==id);renderCart()}
+function renderCart(){
+ let el=document.getElementById("cart");
+ el.innerHTML=cart.length?cart.map(i=>`<div class="item"><div class="mini">${i.e}</div><div class="item-main"><div class="item-name">${i.n}</div><div class="item-price">${rp(i.p)} × ${i.q}</div><div class="qty"><button onclick="change(${i.id},-1)">−</button><span>${i.q}</span><button onclick="change(${i.id},1)">+</button></div></div><button class="remove" onclick="change(${i.id},-99)">✕</button></div>`).join(""):`<div class="empty">🛒<br><br>Belum ada pesanan.<br><small>Pilih produk untuk menambahkannya.</small></div>`;
+ let sub=cart.reduce((a,i)=>a+i.p*i.q,0), disc=sub>=100000?10000:0,total=sub-disc;
+ document.getElementById("subtotal").textContent=rp(sub);document.getElementById("discount").textContent=disc?`-${rp(disc)}`:rp(0);document.getElementById("total").textContent=rp(total);
+ document.getElementById("count").textContent=cart.reduce((a,i)=>a+i.q,0)+" item";document.getElementById("checkout").disabled=!cart.length;
+}
+function method(x,b){pay=x;document.querySelectorAll(".method").forEach(q=>q.classList.remove("active"));b.classList.add("active")}
+function clearCart(){cart=[];renderCart()}
+function checkout(){
+ if(!cart.length)return;let sub=cart.reduce((a,i)=>a+i.p*i.q,0),disc=sub>=100000?10000:0,total=sub-disc;
+ let text=`KasirPro
+------------------------------
+${new Date().toLocaleString("id-ID")}
+Metode: ${pay}
+------------------------------
+${cart.map(i=>`${i.n}\n${i.q} x ${rp(i.p)} = ${rp(i.p*i.q)}`).join("\n")}
+------------------------------
+Subtotal     ${rp(sub)}
+Diskon       -${rp(disc)}
+TOTAL        ${rp(total)}
+------------------------------
+Terima kasih telah berbelanja!`;
+ document.getElementById("receiptText").textContent=text;document.getElementById("receiptDate").textContent="Transaksi berhasil diproses";document.getElementById("modal").classList.add("show");cart=[];renderCart();
+}
+function closeModal(){document.getElementById("modal").classList.remove("show")}
+document.getElementById("date").textContent=new Date().toLocaleDateString("id-ID",{weekday:"long",day:"numeric",month:"long",year:"numeric"});
+render();
+</script>
+</body>
+</html>
